@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 	"time"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
@@ -17,8 +18,11 @@ import (
 func main() {
 	secretName := flag.String("secretName", "", "The name of the secret in AWS Secrets Manager")
 	region := flag.String("region", "", "The AWS region where the secret is stored")
+	outputDir := flag.String("outputDir", ".", "The directory where the .env file will be saved")
+
 	flag.StringVar(secretName, "s", "", "Shortcut for secretName")
 	flag.StringVar(region, "r", "", "Shortcut for region")
+	flag.StringVar(outputDir, "o", ".", "Shortcut for outputDir")
 	flag.Parse()
 
 	if *secretName == "" || *region == "" {
@@ -50,11 +54,13 @@ func main() {
 		log.Fatalf("Unable to parse secret string: %v", err)
 	}
 
-	if _, err := os.Stat(".env"); err == nil {
-		log.Println(".env file already exists. It will be overwritten.")
+	envFilePath := filepath.Join(*outputDir, ".env")
+
+	if _, err := os.Stat(envFilePath); err == nil {
+		log.Printf(".env file already exists at %s. It will be overwritten.\n", envFilePath)
 	}
 
-	file, err := os.Create(".env")
+	file, err := os.Create(envFilePath)
 	if err != nil {
 		log.Fatalf("Unable to create .env file: %v", err)
 	}
@@ -67,5 +73,5 @@ func main() {
 		}
 	}
 
-	log.Println(".env file created successfully with secret values")
+	log.Printf(".env file created successfully at %s with secret values\n", envFilePath)
 }

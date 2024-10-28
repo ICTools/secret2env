@@ -4,7 +4,7 @@ Secret2Env is a Go-based tool that retrieves secrets from AWS Secrets Manager an
 
 ## Prerequisites
 
-- Go: Make sure Go is installed (recommended version 1.18+).
+- Go: Make sure Go is installed (recommended version 1.23+).
 - AWS Account: You need an AWS account with secrets stored in AWS Secrets Manager.
 - EC2 Instance with IAM Role: If running this script on an EC2 instance, the IAM role must have secretsmanager:GetSecretValue permission.
 
@@ -15,13 +15,6 @@ Secret2Env is a Go-based tool that retrieves secrets from AWS Secrets Manager an
 ```bash
 git clone https://github.com/ICTools/secret2env.git
 cd secret2env
-```
-
-
-### Initialize the Go module (if not already done):
-
-```bash
-go mod init secret2env
 ```
 
 ### Install dependencies:
@@ -55,18 +48,18 @@ Replace account-id and ictools with the values specific to your account and secr
 
 ## Usage
 
-This script supports two primary options: --secretName (or -s for shorthand) and --region (or -r for shorthand).
+This script supports 3 primary options: --secretName (or -s for shorthand), --region (or -r for shorthand) and --outputDir (or -o for shorthand).
 
 ### Full command:
 
 ```bash
-go run main.go --secretName "ictools" --region "eu-west-3"
+go run main.go --secretName "ictools" --region "eu-west-3" --outputDir "/path/to/directory"
 ```
 
 ### Using shortcuts:
 
 ```bash
-go run main.go -s "ictools" -r "eu-west-3"
+go run main.go -s "ictools" -r "eu-west-3" -o "/path/to/directory"
 ```
 
 ### Parameters
@@ -74,3 +67,5 @@ go run main.go -s "ictools" -r "eu-west-3"
 - `--secretName` (-s): The name of the secret in AWS Secrets Manager.
 
 - `--region` (-r): The AWS region where the secret is stored (e.g., eu-west-3).
+
+- `--outputDir` (-r): The directory where the .env file will be saved.
