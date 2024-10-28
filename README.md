@@ -66,5 +66,6 @@ go run main.go -s "ictools" -r "eu-west-3"
 
 ### Parameters
 
---secretName (-s): The name of the secret in AWS Secrets Manager.
---region (-r): The AWS region where the secret is stored (e.g., eu-west-3).
+- `--secretName` (-s): The name of the secret in AWS Secrets Manager.
+
+- `--region` (-r): The AWS region where the secret is stored (e.g., eu-west-3).
