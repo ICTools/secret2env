@@ -35,18 +35,23 @@ Ensure that the EC2 instance or AWS user running this script has the necessary p
 
 ```json
 {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": "secretsmanager:GetSecretValue",
-      "Resource": "arn:aws:secretsmanager:eu-west-3:account-id:secret:ictools"
-    }
-  ]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Statement1",
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:GetSecretValue"
+            ],
+            "Resource": [
+                "arn:aws:secretsmanager:eu-west-3:account-id:secret:ictools"
+            ]
+        }
+    ]
 }
 ```
 
-Replace account-id and ictools with the values specific to your account and secret.
+Replace account-id and ictools with the values specific to your account and secret. You can find the arn of your secrets manager directly in the secrets manager (via the AWS console).
 
 ## Usage
 
