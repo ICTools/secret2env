@@ -2,27 +2,46 @@
 
 Secret2Env is a Go-based tool that retrieves secrets from AWS Secrets Manager and saves them into a .env file. This script is designed to facilitate secret management in environments that use .env files for configuration.
 
-## Prerequisites
 
-- Go: Make sure Go is installed (recommended version 1.23+).
+### Prerequisites
+
 - AWS Account: You need an AWS account with secrets stored in AWS Secrets Manager.
 - EC2 Instance with IAM Role: If running this script on an EC2 instance, the IAM role must have secretsmanager:GetSecretValue permission.
 
-## Installation
+## Quick Start
 
-### Clone the project:
+Using the Pre-built Binary:
+
+```bash
+wget https://github.com/ICTools/secret2env/releases/download/v1.0.2/secret2env
+chmod +x secret2env
+```
+
+Then, you can run the binary with options:
+
+```bash
+./secret2env --secretName "ictools" --region "eu-west-3" --outputDir "/path/to/directory"
+```
+
+## Running from Source Code (Go Required)
+
+If you prefer to run Secret2Env from the source code, make sure Go (recommended version 1.23+) is installed and follow these steps.
+
+### Installation
+
+#### Clone the project:
 
 ```bash
 git clone https://github.com/ICTools/secret2env.git
 cd secret2env
 ```
 
-### Install dependencies:
+#### Install dependencies:
 ```bash
 go mod tidy
 ```
 
-### IAM Configuration
+#### IAM Configuration
 
 Ensure that the EC2 instance or AWS user running this script has the necessary permissions to access the secrets. A minimal IAM policy might look like this:
 
@@ -46,23 +65,19 @@ Ensure that the EC2 instance or AWS user running this script has the necessary p
 
 Replace account-id and ictools with the values specific to your account and secret. You can find the arn of your secrets manager directly in the secrets manager (via the AWS console).
 
-## Usage
-
-This script supports 3 primary options: --secretName (or -s for shorthand), --region (or -r for shorthand) and --outputDir (or -o for shorthand).
-
-### Full command:
+#### Full Go command:
 
 ```bash
 go run main.go --secretName "ictools" --region "eu-west-3" --outputDir "/path/to/directory"
 ```
 
-### Using shortcuts:
+#### Using shortcuts:
 
 ```bash
 go run main.go -s "ictools" -r "eu-west-3" -o "/path/to/directory"
 ```
 
-### Parameters
+#### Parameters
 
 - `--secretName` (-s): The name of the secret in AWS Secrets Manager.
 
