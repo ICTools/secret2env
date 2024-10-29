@@ -87,4 +87,4 @@ go run main.go -s "ictools" -r "eu-west-3" -o "/path/to/directory" -f ".env.loca
 
 - `--fileName` (-f) (OPTIONAL) : The name of the output file. ".env" by default.
 
-- `--versionStage` (-r) (OPTIONAL) : The version stage of AWS secret. AWSCURRENT by default. 
+- `--versionStage` (-v) (OPTIONAL) : The version stage of AWS secret. AWSCURRENT by default. 
