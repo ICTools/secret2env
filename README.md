@@ -13,14 +13,14 @@ Secret2Env is a Go-based tool that retrieves secrets from AWS Secrets Manager an
 Using the Pre-built Binary:
 
 ```bash
-wget https://github.com/ICTools/secret2env/releases/download/v1.0.2/secret2env
+wget https://github.com/ICTools/secret2env/releases/download/v1.1.0/secret2env
 chmod +x secret2env
 ```
 
 Then, you can run the binary with options:
 
 ```bash
-./secret2env --secretName "ictools" --region "eu-west-3" --outputDir "/path/to/directory"
+./secret2env --secretName "ictools" --region "eu-west-3"
 ```
 
 ## Running from Source Code (Go Required)
@@ -68,13 +68,13 @@ Replace account-id and ictools with the values specific to your account and secr
 #### Full Go command:
 
 ```bash
-go run main.go --secretName "ictools" --region "eu-west-3" --outputDir "/path/to/directory"
+go run main.go --secretName "ictools" --region "eu-west-3" --outputDir "/path/to/directory" --fileName ".env.local" --versionStage "AWSCURRENT"
 ```
 
 #### Using shortcuts:
 
 ```bash
-go run main.go -s "ictools" -r "eu-west-3" -o "/path/to/directory"
+go run main.go -s "ictools" -r "eu-west-3" -o "/path/to/directory" -f ".env.local" -v "AWSCURRENT"
 ```
 
 #### Parameters
@@ -83,4 +83,8 @@ go run main.go -s "ictools" -r "eu-west-3" -o "/path/to/directory"
 
 - `--region` (-r): The AWS region where the secret is stored (e.g., eu-west-3).
 
-- `--outputDir` (-r): The directory where the .env file will be saved.
+- `--outputDir` (-r) (OPTIONAL) : The directory where the file will be saved. Current directory by default.
+
+- `--fileName` (-f) (OPTIONAL) : The name of the output file. ".env" by default.
+
+- `--versionStage` (-r) (OPTIONAL) : The version stage of AWS secret. AWSCURRENT by default. 
