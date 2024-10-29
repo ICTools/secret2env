@@ -18,15 +18,15 @@ import (
 func main() {
 	secretName := flag.String("secretName", "", "The name of the secret in AWS Secrets Manager")
 	region := flag.String("region", "", "The AWS region where the secret is stored")
-	outputDir := flag.String("outputDir", ".", "The directory where the .env file will be saved. Current folder by default.")
+	outputDir := flag.String("outputDir", "./", "The directory where the .env file will be saved. Current folder by default.")
 	fileName := flag.String("fileName", ".env", "The output filename. '.env' by default.")
 	versionStage := flag.String("versionStage", "AWSCURRENT", "Version stage of AWS secret. AWSCURRENT by default.")
 
 	flag.StringVar(secretName, "s", "", "Shortcut for secretName")
 	flag.StringVar(region, "r", "", "Shortcut for region")
-	flag.StringVar(outputDir, "o", ".", "Shortcut for outputDir")
-	flag.StringVar(fileName, "f", ".", "Shortcut for fileName")
-	flag.StringVar(versionStage, "v", ".", "Shortcut for versionStage")
+	flag.StringVar(outputDir, "o", "./", "Shortcut for outputDir")
+	flag.StringVar(fileName, "f", ".env", "Shortcut for fileName")
+	flag.StringVar(versionStage, "v", "AWSCURRENT", "Shortcut for versionStage")
 	flag.Parse()
 
 	if *secretName == "" || *region == "" {
