@@ -13,7 +13,7 @@ Secret2Env is a Go-based tool that retrieves secrets from AWS Secrets Manager an
 Using the Pre-built Binary:
 
 ```bash
-wget https://github.com/ICTools/secret2env/releases/download/v1.1.0/secret2env
+wget https://github.com/ICTools/secret2env/releases/download/v1.1.1/secret2env
 chmod +x secret2env
 ```
 
